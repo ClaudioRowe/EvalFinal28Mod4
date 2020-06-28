@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Calendario</title>
+
+    <!-- Core Stylesheet -->
+    <link rel="stylesheet" href="js/event-calendar-evo/evo-calendar/css/evo-calendar.css" />
+
+    <!-- Optional Themes -->
+    <link rel="stylesheet" href="js/event-calendar-evo/evo-calendar/css/evo-calendar.midnight-blue.css" />
+    <link rel="stylesheet" href="js/event-calendar-evo/evo-calendar/css/evo-calendar.orange-coral.css" />
+    <link rel="stylesheet" href="js/event-calendar-evo/evo-calendar/css/evo-calendar.royal-navy.css" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!-- JavaScript -->
+    <script src="js/event-calendar-evo/evo-calendar/js/evo-calendar.js"></script>
+    <!-- Slidebars -->
+    <link rel="stylesheet" href="js/Slidebars-2.0.2/dev/slidebars.css">
+    <script src="js/Slidebars-2.0.2/dev/slidebars.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/js calendario.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/logincheck.js"></script>
+    <script src="js/logout.js"></script>
+
+</head>
+
+<body>
+    <div canvas="container" id="calendario">
+        <div class="wrapper">
+            <header>
+                <div class="nav-content">
+                    <div class="menu_bar">
+                        <a href="#" class="bt-menu">Menú</a>
+                    </div>
+                    <nav>
+                        <ul class="nav-list">
+                            <li><a href="index.html"><span ></span>Inicio</a></li>
+                            <li><a href="quienes-somos.html"><span ></span>Quiénes somos</a></li>
+                            <li><a href="lista.html"><span ></span>Listas</a></li>
+                            <li><a href="calendario.html"><span ></span>Calendario</a></li>
+                            <li><a href="rutina.html"><span ></span>Rutinas</a></li>
+                            <li><a href="contacto.html"><span ></span>Contacto</a></li>
+
+                            <div class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span ></span>Modo de uso</a>
+                                <div class="dropdown-menu">
+                                    <a href="lista-uso.html" class="dropdown-item">Listas</a>
+                                    <a href="calendario-uso.html" class="dropdown-item">Calendario</a>
+                                </div>
+                            </div>
+                        </ul>
+
+                        <ul class="login">
+                            <li><a href="#" id="sld3">Logout</a></li>
+                        </ul>
+
+                    </nav>
+                </div>
+
+            </header>
+
+            <main>
+
+                <h1 style="color: rgb(47,142,206);">Calendario</h1>
+
+                <div style="color: rgb(47,142,206)">
+                    <p id=" top ">Organiza tu tiempo de manera ágil y cómoda. Selecciona una fecha y visibiliza tus actividades diarias, ingresa a ella para agregar, eliminar, editar, crear rútinas, lo que necesites para hacer de tu tiempo algo más llevadero. </p>
+                </div>
+
+                <div class="calendar-container">
+                    <div id="evoCalendar" class="--noshadow evo-calendar midnight-blue sidebar-hide event-hide "></div>
+                </div>
+
+                <div style="color: rgb(47,142,206)">
+                    <h2>Características</h2>
+
+                    <h3>Familiaridad</h3>
+
+                    <p>Buscamos que el calendario tenga un acceso tan cotidiano como mirar a un calendario hecho de papel.Queremos que la experiencia de utilizar la aplicación sea un análogo a redactar en un planificador lo mejor desarrollado y lo más óptimo
+                        posible.
+                    </p>
+
+                    <h3>Simpleza</h3>
+
+                    <p>Para que nuestro día se vea alivianado por su existencia y sea el preferido de nuestros usuarios, hemos diseñado una aplicación facil de manejar y con las características justas y necesarias, pero sin evitarnos el integrar lo que es
+                        útil.
+                    </p>
+
+                    <h3>Utilidad</h3>
+
+                    <p>Nuestro calendario apunta a ser el planficador por excelencia, algo que el mercado aún no se ha molestado en responder. Integramos el calendario, más el planificador y el creador de rutinas para crear la herramienta completa.</p>
+
+                    <h3>Organiza tu vida con (título)</h3>
+
+                    <p id="bottom ">Nuestra plataforma tiene todo lo necesario para que ingreses tus planes y no los pierdas por ninguna razón. Nuestro sistema de visión matutina y de alarmas está pensado para recordarte a tiempo prudente las actividades que tienes en
+                        tu día, y para que no se te pase ninguna de ellas.</p>
+                </div>
+            </main>
+
+            <footer class="container-fluid ">
+                <p>Desarrollado por: Claudio Torres, Pamela Machino y Jaime Reyes</p>
+                <p>Junio 2020, Todos los derechos reservados.</p>
+            </footer>
+        </div>
+    </div>
+
+    <div off-canvas="id-3 top push" class="custom-fluid-width custom-fluid-height">
+        <container class="login" id="logIndex" style="display:none;">
+            <h4 id="hlogin">Login</h4>
+            <form class="card box-shadow" id="formaLogin">
+
+
+                <div class="row justify-content-center">
+                    <div class="col-3">
+                        <label for="ingreso" class="labLog" id="labIng">Usuario o e-mail
+                        <input type="text" id="ingreso" name="ingreso" placeholder="Usuario o e-mail" class="inLogin"></label>
+                    </div>
+                    <div class="col-3">
+                        <label for="password" class="labLog" id="labPas">Password
+                        <input type="password" id="password" name="password" placeholder="Password" class="inLogin"></label>
+                    </div>
+                    <div>
+                        <input type="submit" value="Ingresar" id="ingresar">
+                    </div>
+                    <div id="checkRec">
+                        <label for="recordar" id="labRecordar">Recordar clave
+                        <input type="checkbox" id="checkboxLog" name="recordar">
+                        </label>
+                    </div>
+                </div>
+
+            </form>
+        </container>
+        <div class="logout-displayer" id="logoutdisplay">
+            <p>Has iniciado sesión como: <span id="usuario"></span></p>
+            <a href="logout">Cerrar sesión</a>
+        </div>
+    </div>
+
+</body>
+
+</html>

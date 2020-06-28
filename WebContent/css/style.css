@@ -1,0 +1,567 @@
+/* Todos los archivos */
+
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+}
+
+#index {
+    background-color: rgb(12, 113, 123);
+}
+
+#calendario {
+    background-color: rgb(249, 172, 152);
+}
+
+#calendario p,
+#calendario h1,
+#calendario h2,
+#calendario h3 {
+    text-align: center;
+    margin-top: 4vh;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.calendar-container {
+    width: 100%;
+    padding-left: 5px;
+}
+
+.wrapper {
+    max-width: 800px;
+    margin: auto;
+}
+
+h1 {
+    text-align: center;
+}
+
+#headins {
+    margin-bottom: 10vh;
+}
+
+.ins {
+    margin-bottom: 5vh;
+}
+
+#textoInd {
+    color: rgb(184, 234, 197);
+}
+
+.menu_bar {
+    display: none;
+}
+
+header #headindex {
+    width: 100%;
+}
+
+header nav {
+    background: #2f79da;
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    z-index: 1000;
+    background: #2f79da;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+header nav ul li {
+    display: inline-block;
+    position: relative;
+}
+
+header nav ul li:hover,
+.dropdown-menu a:hover {
+    background: #ffffff;
+}
+
+.dropdown-menu {
+    background-color: #2f79da;
+}
+
+header nav ul li a,
+.dropdown a {
+    color: #fff;
+    display: block;
+    text-decoration: none;
+    padding: 8px;
+}
+
+main {
+    padding: 15px;
+}
+
+.jumbotron p {
+    text-align: center;
+    color: rgb(47, 142, 206);
+}
+
+main section {
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 15px;
+}
+
+footer p {
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+
+/* Quiénes somos */
+
+.quienes-somos .integrantes {
+    display: flex;
+    flex-direction: column;
+}
+
+.integrantes>div {
+    width: 75%;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 10px;
+    border: 1px solid grey;
+}
+
+.integrantes div:nth-child(2) {
+    align-self: flex-end;
+}
+
+
+/* Tablero - Lista de tareas */
+
+.add-task {
+    width: 100%;
+    padding: 15px;
+}
+
+.add-task-form {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.add-task-form * {
+    margin-top: 15px;
+}
+
+.add-task-form input {
+    margin-right: 15px;
+}
+
+.task-details {
+    margin-top: 15px;
+}
+
+.task-details label {
+    margin-right: 15px;
+}
+
+.task-details #routine {
+    margin-right: 5px;
+}
+
+.board {
+    position: relative;
+    margin-left: 1%;
+}
+
+.board-column {
+    position: absolute;
+    left: 0;
+    right: 0;
+    width: 30%;
+    margin: 0 1.5%;
+    background: #f0f0f0;
+    border-radius: 3px;
+    z-index: 1;
+}
+
+.board-column.muuri-item-releasing {
+    z-index: 2;
+}
+
+.board-column.muuri-item-dragging {
+    z-index: 3;
+    cursor: move;
+}
+
+.board-column-header {
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    overflow: hidden;
+    padding: 0 20px;
+    text-align: center;
+    background: #333;
+    color: #fff;
+    border-radius: 3px 3px 0 0;
+}
+
+#multiDate {
+    margin-top: 5vh;
+}
+
+#titRut {
+    margin-top: 3vh;
+}
+
+.board-column.todo .board-column-header {
+    background: #4A9FF9;
+}
+
+.board-column.working .board-column-header {
+    background: #f9944a;
+}
+
+.board-column.done .board-column-header {
+    background: #2ac06d;
+}
+
+.board-column-content {
+    position: relative;
+    border: 10px solid transparent;
+    min-height: 95px;
+}
+
+.board-item {
+    position: absolute;
+    width: 100%;
+    margin: 5px 0;
+}
+
+.board-item.muuri-item-releasing {
+    z-index: 9998;
+}
+
+.board-item.muuri-item-dragging {
+    z-index: 9999;
+    cursor: move;
+}
+
+.board-item.muuri-item-hidden {
+    z-index: 0;
+}
+
+.board-item-content {
+    position: relative;
+    padding: 20px;
+    background: #fff;
+    border-radius: 4px;
+    font-size: 17px;
+    cursor: pointer;
+    -webkit-box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.2);
+    box-shadow: 0px 1px 3px 0 rgba(0, 0, 0, 0.2);
+}
+
+.board-item-content p {
+    font-size: 70%;
+    margin-bottom: 0;
+}
+
+
+/* Modo de uso - Listas */
+
+.uso .row {
+    align-items: center;
+}
+
+.img-container {
+    width: 90%;
+    margin: auto;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.img-container img {
+    width: 100%;
+}
+
+
+/* Login */
+
+.custom-fluid-width {
+    width: 100%;
+}
+
+.custom-fluid-height {
+    height: 70px;
+}
+
+#ingreso,
+#password {
+    height: 20px;
+    width: 200px;
+    padding: 1px;
+    display: inline-flex;
+}
+
+
+/*#ingreso {
+    position: relative;
+    left: 0vw;
+}
+
+#password {
+    position: relative;
+    left: 0vw;
+}*/
+
+#ingresar {
+    height: 20px;
+    font-size: 12px;
+    width: 100px;
+    margin-top: 15px;
+    margin-left: 15px;
+    line-height: 1px;
+}
+
+#hlogin {
+    margin-top: 4px;
+    font-size: 14px;
+    margin-bottom: 0px;
+    margin-left: 48vw;
+}
+
+#formaLogin {
+    margin: auto;
+    background-color: grey;
+    width: 799px;
+}
+
+#labRecordar {
+    font-size: 10px;
+    margin-top: 18px;
+    margin-left: 15px;
+}
+
+#checkboxLog {
+    padding-top: 5px;
+}
+
+.inLogin {
+    font-family: monospace;
+    padding-left: 3px;
+}
+
+.labLog {
+    font-size: 10px;
+}
+
+
+/*#formaLogin {
+    width: 20vw;
+    float: left;
+}*/
+
+.h2ins {
+    text-align: center;
+    margin-top: 5vh;
+}
+
+h3 .h2ins {
+    margin-bottom: 5vh;
+}
+
+#opGen {
+    margin-top: 4vh;
+}
+
+.lisGen {
+    list-style: none;
+}
+
+.lisGen li {
+    margin-top: 10vh;
+}
+
+#bottom,
+#top {
+    margin-bottom: 10vh;
+}
+
+#encabezadocontacto {
+    padding-left: 5vw;
+}
+
+.formacontacto {
+    width: 60vw;
+    justify-content: space-between;
+    max-width: 450px;
+}
+
+.forma {
+    display: flex;
+    justify-content: space-between;
+    padding: 4px;
+}
+
+.textarea {
+    width: 100%;
+}
+
+.botonforma {
+    padding: 4px;
+    margin: 4px;
+}
+
+.logout-displayer>* {
+    display: inline;
+    text-align: center;
+}
+
+@media screen and (max-width: 500px) {
+    .integrantes>div {
+        width: 100%;
+    }
+}
+
+
+/* Media queries - Barra de navegación */
+
+@media screen and (max-width: 600px) {
+    header nav {
+        justify-content: flex-start;
+    }
+    .nav-content {
+        background-color: #2f79da;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+    .menu_bar {
+        display: block;
+        background: #2f79da;
+    }
+    .menu_bar .bt-menu,
+    .login a {
+        display: block;
+        padding: 20px;
+        text-align: center;
+        color: #ffffff;
+        overflow: hidden;
+        font-size: 25px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+    .menu_bar span {
+        float: right;
+        font-size: 40px;
+    }
+    .nav-list {
+        width: 40%;
+        height: calc(100% - 80px);
+        position: fixed;
+        right: 100%;
+        margin: 0;
+        display: block;
+    }
+    .nav-list li {
+        display: block;
+        border-bottom: 1px solid #ffffff;
+    }
+    .nav-list li a {
+        display: block;
+    }
+    .login li:hover {
+        background-color: #2f79da;
+    }
+    #ingreso,
+    #password {
+        height: 20px;
+        width: 100px;
+        padding: 1px;
+        display: block;
+    }
+    .labLog {
+        position: relative;
+        right: 100px;
+    }
+    #labPas {
+        right: 203px;
+    }
+    #ingresar {
+        position: relative;
+        right: 300px;
+        width: 80px;
+    }
+    #checkRec {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .uso .row {
+        flex-direction: column-reverse;
+    }
+    .uso .img-wrapper {
+        margin: auto;
+    }
+    .content-container p {
+        margin-top: 16px;
+        padding: 8px;
+    }
+}
+
+@media screen and (max-width: 700px) {
+    .board-item-content p {
+        display: none;
+    }
+    .board-column {
+        width: 95%;
+    }
+    .board-column-header {
+        text-align: center;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    #ingreso,
+    #password {
+        height: 20px;
+        width: 100px;
+        padding: 1px;
+        display: block;
+    }
+    .labLog {
+        position: absolute;
+        right: 240px;
+    }
+    #labPas {
+        right: 340px;
+    }
+    #ingresar {
+        position: relative;
+        right: 350px;
+        width: 80px;
+    }
+    #checkRec {
+        display: none;
+    }
+}
