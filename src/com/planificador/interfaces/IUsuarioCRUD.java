@@ -13,6 +13,7 @@ public interface IUsuarioCRUD {
 	// Actualiza los datos de un usuario
 	public boolean modificarUsuario(Usuario user);
 	
-	// Borra un usuario
+	// Verifica si el usuario y la contraseña coinciden con los registros de la base de datos
+	public boolean verificarUsuario(String usuario, String password);
 	
 }

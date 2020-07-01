@@ -1,12 +1,7 @@
-package login;
+package com.planificador.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,17 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.planificador.dao.UsuarioDAO;
+
 /**
  * Servlet implementation class LoginTrabajoGrupal
  */
 @WebServlet("/login")
-public class LoginTrabajoGrupal extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LoginTrabajoGrupal() {
+    public LoginServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,34 +37,25 @@ public class LoginTrabajoGrupal extends HttpServlet {
 		
 		String usuario = request.getParameter("ingreso");
 		String password = request.getParameter("password");
+		
+		UsuarioDAO userdao = new UsuarioDAO();
 
-		Connection con = null;
-		
-		try {
-			con = contacto.ContactoDao.getConnection();
-			
-	        PreparedStatement ps = con.prepareStatement(
-	"select usuario, password from log where usuario=? and password=?");
-	        ps.setString(1, usuario);
-	        ps.setString(2, password);
-	        ResultSet rs = ps.executeQuery();
+		boolean isValido = userdao.verificarUsuario(usuario, password);
 	        
-	        if (rs.next()) {
-	        	Cookie ck = new Cookie("usuario", usuario);
-	        	ck.setMaxAge(180);
-	        	response.addCookie(ck);
-	        	response.sendRedirect("index.html");
-	        } else {
-	        	out.print("Usuario o contraseï¿½a incorrectos");
-	        	request.getRequestDispatcher("index.jsp").include(request, response);
-	        }
+        if (isValido) {
+        	
+        	Cookie ck = new Cookie("usuario", usuario);
+        	ck.setMaxAge(180);
+        	response.addCookie(ck);
+        	response.sendRedirect("index.html");
+        	
+        } else {
+        	
+        	out.print("Usuario o contraseña incorrectos");
+        	request.getRequestDispatcher("index.jsp").include(request, response);
+        	
+        }
 	        
-	        con.close();
-	        
-		} catch (Exception e) {
-			System.out.println(e);
-		}
-		
 		out.close();
 		
 	}

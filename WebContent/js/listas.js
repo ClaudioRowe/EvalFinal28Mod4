@@ -85,22 +85,52 @@ $(document).ready(function() {
 
     // Otorga funcionalidad al botón de agregar
     $('.add-task-form>button').click(function() {
-        let text = $('#add').val();
-        if (text) {
-            let newItem = document.createElement('div');
-            let content = '<div class="board-item"><div class="board-item-content">' + text + '</div></div>';
-            newItem.innerHTML = content;
-            newItem = newItem.firstChild;
-            columnGrids[0].add(newItem);
-            $('.board-item').click(function() {
-                $('.task-details').slideDown('fast');
+
+        let descripcion = $('#desc-add').val(),
+            detalles = $('#detalles-add').val(),
+            fecha = $('#fecha-add').val(),
+            categoria = $('#categoria-add').val();
+
+        if (descripcion && detalles && fecha && categoria) {
+
+            let fechaLong = new Date(fecha);
+            fechaLong = fechaLong.getTime();
+
+
+            let data = {
+                descripcion: descripcion,
+                detalles: detalles,
+                fecha: fechaLong,
+                categoria: categoria
+            }
+
+            $.ajax({
+                url: 'agregaractividad',
+                type: 'POST',
+                data: data,
+                complete: function(data, status, xhr) {
+                    console.log(data);
+                    console.log(status);
+                    if (status === 'success') {
+                        let newItem = document.createElement('div');
+                        let content = '<div class="board-item"><div class="board-item-content">' + descripcion + '</div></div>';
+                        newItem.innerHTML = content;
+                        newItem = newItem.firstChild;
+                        columnGrids[0].add(newItem);
+                        $('.board-item').click(function() {
+                            $('.task-details').slideDown('fast');
+                        });
+                        columnGrids.forEach(function(muuri) {
+                            muuri.refreshItems();
+                        });
+                        $('#add').val('');
+                        $('.add-task-form').slideUp('fast');
+                    }
+                },
+                dataType: 'html'
             });
-            columnGrids.forEach(function(muuri) {
-                muuri.refreshItems();
-            });
-            $('#add').val('');
-            $('.add-task-form').slideUp('fast');
         }
+
     });
 
     // Otorga funcionalidad al hacer (doble) click en las actividades del tablero

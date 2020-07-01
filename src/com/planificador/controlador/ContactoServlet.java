@@ -1,4 +1,4 @@
-package contacto;
+package com.planificador.controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -8,6 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.planificador.dao.ContactoDao;
+import com.planificador.modelo.InfoContacto;
 
 /**
  * Servlet implementation class ContactoServlet
@@ -41,7 +44,8 @@ public class ContactoServlet extends HttpServlet {
 		info.setTelefono(request.getParameter("telefono"));
 		info.setMensaje(request.getParameter("mensaje"));
 		
-		int status = ContactoDao.save(info);
+		ContactoDao contactoDao = new ContactoDao();
+		int status = contactoDao.guardarInfoContacto(info);
 		
 		request.setAttribute("status", status);
 		request.getRequestDispatcher("resultcontacto.jsp").forward(request, response);

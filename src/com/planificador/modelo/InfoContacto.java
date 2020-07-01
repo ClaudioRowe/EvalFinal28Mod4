@@ -1,4 +1,4 @@
-package contacto;
+package com.planificador.modelo;
 
 import java.io.Serializable;
 

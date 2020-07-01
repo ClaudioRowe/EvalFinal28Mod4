@@ -1,4 +1,4 @@
-package login;
+package com.planificador.controlador;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -12,13 +12,13 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class LogoutTrabajoGrupal
  */
 @WebServlet("/logout")
-public class LogoutTrabajoGrupal extends HttpServlet {
+public class LogoutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public LogoutTrabajoGrupal() {
+    public LogoutServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
