@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.planificador.dao.ActividadDAO;
 import com.planificador.modelo.Actividad;
 
 /**
@@ -32,9 +33,9 @@ public class AgregarActividadServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.setContentType("text.html");
+		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
-		System.out.println(request.getContentType());
+		
 		String id_usuario = request.getParameter("id_usuario");
 		
 		String descripcion = request.getParameter("descripcion");
@@ -44,10 +45,11 @@ public class AgregarActividadServlet extends HttpServlet {
 		long fecha = Long.parseLong(fechaString);
 		
 		Actividad actividad = new Actividad(descripcion, detalles, fecha, categoria, "Por hacer");
-		System.out.println(actividad.getDescripcion());
-		System.out.println(actividad.getDetalle());
-		System.out.println(actividad.getFecha());
-		System.out.println(actividad.getCategoria());
+		
+		ActividadDAO actdao = new ActividadDAO();
+		boolean status = actdao.crearActividad(actividad, 1);
+		
+		System.out.println(status);
 		
 		response.setStatus(HttpServletResponse.SC_OK);
 		response.getWriter().write("Resultó");

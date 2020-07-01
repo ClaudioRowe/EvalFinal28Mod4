@@ -19,6 +19,6 @@ public interface IRutinaCRUD {
 	public boolean modificarRutina(Rutina rutina);
 	
 	// Cambia el estado de una rutina a "Eliminado"
-	public boolean desabilitarRutina(int id_rutina);
+	public boolean deshabilitarRutina(int id_rutina);
 
 }
