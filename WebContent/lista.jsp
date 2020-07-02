@@ -1,3 +1,10 @@
+<%@page import="com.planificador.dao.ActividadDAO"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="com.planificador.dao.ActividadDAO" %>
+<%@ page import="com.planificador.modelo.Actividad" %>
+<%@ page import="java.util.List" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -64,6 +71,9 @@
             </header>
 
             <main>
+
+				<%-- int id_usuario = (int) session.getAttribute("id_usuario"); --%>
+                
                 <section>
                     <h1>Lista de tareas</h1>
                     <p>Organiza tus tareas de forma sencilla y cómoda. Puedes crear nuevas categorías, asignar fechas de inicio y término, ordenarlas según tus preferencias, y mucho más.</p>
@@ -84,56 +94,62 @@
                             <div class="board-column todo">
                                 <div class="board-column-header">Por hacer</div>
                                 <div class="board-column-content" data-estado="por hacer">
-                                    <div class="board-item">
-                                        <div class="board-item-content">Hacer ejercicio
-                                            <p>Trote matutino</p>
-                                        </div>
-                                    </div>
-                                    <div class="board-item">
-                                        <div class="board-item-content">Comprar alimentos
-                                            <p>Queso, jugo, verduras, pan</p>
-                                        </div>
-                                    </div>
-                                    <div class="board-item">
-                                        <div class="board-item-content">Completar el informe
-                                            <p>Avisar al jefe una vez completado</p>
-                                        </div>
-                                    </div>
+                                
+                                <% 
+                                	ActividadDAO actdao = new ActividadDAO();
+                                	List<Actividad> porhacer = actdao.obtenerActividadesPorEstado(1,"POR HACER");
+                                	for (Actividad act: porhacer) {
+                                %>
+                                
+                                    <div class="board-item" data-id="<%= act.getId() %>" data-estado="<%= act.getEstado() %>">
+                                    	<div class="board-item-content">
+                                    		<%= act.getDescripcion() %>
+                                    		<p><%= act.getDetalle() %></p>
+                                   		</div>
+                                	</div>
+                                
+                                <% } %>
+                                    
                                 </div>
                             </div>
                             <div class="board-column working">
                                 <div class="board-column-header">Pendiente</div>
                                 <div class="board-column-content" data-estado="pendiente">
-                                    <div class="board-item">
-                                        <div class="board-item-content">Sacar la basura
-                                            <p>Importante</p>
-                                        </div>
-                                    </div>
-                                    <div class="board-item">
-                                        <div class="board-item-content">Seguir escribiendo
-                                            <p>"El Observador", Cap. 3</p>
-                                        </div>
-                                    </div>
+                                
+                                <% 
+                                	List<Actividad> pendiente = actdao.obtenerActividadesPorEstado(1,"PENDIENTE");
+                                	for (Actividad act: pendiente) {
+                                %>
+                                
+                                    <div class="board-item" data-id="<%= act.getId() %>" data-estado="<%= act.getEstado() %>">
+                                    	<div class="board-item-content">
+                                    		<%= act.getDescripcion() %>
+                                    		<p><%= act.getDetalle() %></p>
+                                   		</div>
+                                	</div>
+                                
+                                <% } %>
+                                    
                                 </div>
                             </div>
                             <div class="board-column done">
                                 <div class="board-column-header">Completado</div>
                                 <div class="board-column-content" data-estado="completado">
-                                    <div class="board-item">
-                                        <div class="board-item-content">Remodelar el jardín
-                                            <p>Antes del otoño</p>
-                                        </div>
-                                    </div>
-                                    <div class="board-item">
-                                        <div class="board-item-content">Contactar a cliente
-                                            <p>Paulina Salazar</p>
-                                        </div>
-                                    </div>
-                                    <div class="board-item">
-                                        <div class="board-item-content">Paseo familiar &#128516;
-                                            <p>Viaje a la montaña</p>
-                                        </div>
-                                    </div>
+                                
+                                <% 
+                                	List<Actividad> completado = actdao.obtenerActividadesPorEstado(1,"COMPLETADO");
+                                	for (Actividad act: completado) {
+                                %>
+                                
+                                    <div class="board-item" data-id="<%= act.getId() %>" data-estado="<%= act.getEstado() %>">
+                                    	<div class="board-item-content">
+                                    		<%= act.getDescripcion() %>
+                                    		<p><%= act.getDetalle() %></p>
+                                   		</div>
+                                	</div>
+                                
+                                <% } %>
+                                
                                 </div>
                             </div>
                         </div>

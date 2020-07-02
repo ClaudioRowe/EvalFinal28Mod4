@@ -171,10 +171,31 @@ $(document).ready(function() {
 
     });
 
-    // Otorga funcionalidad al hacer (doble) click en las actividades del tablero
+    // Otorga funcionalidad al hacer (doble) click y al recolocar las actividades del tablero
     $('.board-item').click(function() {
-        $('.task-details').slideDown('fast');
-    });
+            let id = $(this).attr('data-id');
+            let estado = $(this).attr('data-estado');
+            $('#id-edit').val(id);
+            $('#estado-edit').val(estado);
+            $('.task-details').slideDown('fast');
+        })
+        .on('dragEnd', function() {
+            let id = $(this).attr('data-id');
+            let estado = $(this).parent().attr('data-estado');
+
+            let data = {
+                id: id,
+                estado: estado
+            }
+
+            $.ajax({
+                url: 'moveractividad',
+                type: 'POST',
+                data: data,
+                dataType: 'html'
+            });
+
+        });
 
     // Otorga funcionalidad al botón de editar detalles de actividad
     $('#add-details').click(function() {

@@ -74,7 +74,7 @@ public class ActividadDAO implements IActividadCRUD {
 
 				actividad.setId(id_actividad);
 				actividad.setDescripcion(rs.getString("descripcion_act"));
-				actividad.setDetalle(rs.getString("deatlle_act"));
+				actividad.setDetalle(rs.getString("detalle_act"));
 				actividad.setFecha(rs.getLong("fecha_act"));
 				actividad.setCategoria(rs.getString("categoria_act"));
 				actividad.setEstado(rs.getString("estado_act"));
@@ -119,7 +119,7 @@ public class ActividadDAO implements IActividadCRUD {
 
 				actividad.setId(rs.getInt("cod_act"));
 				actividad.setDescripcion(rs.getString("descripcion_act"));
-				actividad.setDetalle(rs.getString("deatlle_act"));
+				actividad.setDetalle(rs.getString("detalle_act"));
 				actividad.setFecha(rs.getLong("fecha_act"));
 				actividad.setCategoria(rs.getString("categoria_act"));
 				actividad.setEstado(rs.getString("estado_act"));
@@ -166,7 +166,7 @@ public class ActividadDAO implements IActividadCRUD {
 
 				actividad.setId(rs.getInt("cod_act"));
 				actividad.setDescripcion(rs.getString("descripcion_act"));
-				actividad.setDetalle(rs.getString("deatlle_act"));
+				actividad.setDetalle(rs.getString("detalle_act"));
 				actividad.setFecha(rs.getLong("fecha_act"));
 				actividad.setCategoria(rs.getString("categoria_act"));
 				actividad.setEstado(rs.getString("estado_act"));
@@ -213,7 +213,7 @@ public class ActividadDAO implements IActividadCRUD {
 
 				actividad.setId(rs.getInt("cod_act"));
 				actividad.setDescripcion(rs.getString("descripcion_act"));
-				actividad.setDetalle(rs.getString("deatlle_act"));
+				actividad.setDetalle(rs.getString("detalle_act"));
 				actividad.setFecha(rs.getLong("fecha_act"));
 				actividad.setCategoria(rs.getString("categoria_act"));
 				actividad.setEstado(rs.getString("estado_act"));
@@ -259,7 +259,7 @@ public class ActividadDAO implements IActividadCRUD {
 
 				actividad.setId(rs.getInt("cod_act"));
 				actividad.setDescripcion(rs.getString("descripcion_act"));
-				actividad.setDetalle(rs.getString("deatlle_act"));
+				actividad.setDetalle(rs.getString("detalle_act"));
 				actividad.setFecha(rs.getLong("fecha_act"));
 				actividad.setCategoria(rs.getString("categoria_act"));
 				actividad.setEstado(rs.getString("estado_act"));
