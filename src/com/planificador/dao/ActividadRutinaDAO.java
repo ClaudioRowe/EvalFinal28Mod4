@@ -70,7 +70,6 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 				actRutina.setDescripcion(rs.getString("desc_act_rutina"));
 				actRutina.setDetalle(rs.getString("detalle_act_rutina"));
 				actRutina.setCategoria(rs.getString("descripcion_rutina"));
-
 			}
 
 			rs.close();
@@ -89,12 +88,6 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 
 	@Override
 	public List<ActividadRutina> obtenerListaActRutina(int id_rutina) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<ActividadRutina> obtenerListaActRutinaPorCategoria(int id_rutina) {
 		// TODO Auto-generated method stub
 		return null;
 	}

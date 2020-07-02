@@ -18,7 +18,6 @@ public class RutinaDAO implements IRutinaCRUD {
 		int status = 0;
 		Connection con = null;
 		PreparedStatement ps;
-
         try {
             con = ConexionBD.conectar();
             ps = con.prepareStatement("INSERT INTO rutina(nombre_rutina=? ,decripcion_rutina=?, inicio_rutina=?, fin_rutina=?, estado_rutina=?)"
@@ -115,7 +114,6 @@ public class RutinaDAO implements IRutinaCRUD {
 				rutina.setFecha_inicio(rs.getLong("inicio_rutina"));
 				rutina.setFecha_fin(rs.getLong("fin_rutina"));
 				rutina.setEstado(rs.getString("estado_rutina"));
-
 				listaRutinas.add(rutina);
 			}
 
@@ -132,7 +130,6 @@ public class RutinaDAO implements IRutinaCRUD {
 
 		return null;
 	}
-
 
 	@Override
 	public boolean modificarRutina(Rutina rutina) {
@@ -173,7 +170,6 @@ public class RutinaDAO implements IRutinaCRUD {
 
 	@Override
 	public boolean deshabilitarRutina(int id_rutina) {
-
 		String sql = "UPDATE rutina SET estado_rutina=? WHERE cod_rutina=?";
 		Connection con = null;
 		PreparedStatement ps;
