@@ -166,4 +166,43 @@ public class UsuarioDAO implements IUsuarioCRUD {
 		
 	}
 
+	@Override
+	public int obtenerIdUsuario(String usuario, String password) {
+		
+		String sql = "SELECT cod_usuario FROM usuario WHERE usuario=? and password=?";
+		Connection con = null;
+		PreparedStatement ps;
+		ResultSet rs;
+		int id = 0;
+
+		try {
+
+			con = ConexionBD.conectar();
+			ps = con.prepareStatement(sql);
+			ps.setString(1, usuario);
+			ps.setString(2, password);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				id = rs.getInt(1);
+
+			}
+
+			rs.close();
+			ps.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e);
+
+		}
+
+		return id;
+		
+	}
+	
+	
+
 }

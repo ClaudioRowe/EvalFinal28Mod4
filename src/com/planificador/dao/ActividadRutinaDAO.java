@@ -91,6 +91,12 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	@Override
+	public List<ActividadRutina> obtenerListaActRutinaPorCategoria(int id_rutina) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
 	public boolean modificarActRutina(int id_act_rutina) {

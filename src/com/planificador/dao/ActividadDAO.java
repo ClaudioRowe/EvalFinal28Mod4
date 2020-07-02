@@ -390,7 +390,41 @@ public class ActividadDAO implements IActividadCRUD {
 
 		return id;
 	}
-	
-	
+
+	@Override
+	public boolean moverActividad(int id, String estado) {
+		
+		String sql = "UPDATE actividad SET estado_act=? WHERE cod_act=?";
+		Connection con = null;
+		PreparedStatement ps;
+
+		try {
+
+			con = ConexionBD.conectar();
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, estado);
+			ps.setInt(2, id);
+
+
+			int status = ps.executeUpdate();
+
+			ps.close();
+
+			if (status == 1) {
+
+				return true;
+
+			}
+
+		} catch (Exception e) {
+
+			System.out.println(e);
+
+		}
+
+		return false;
+		
+	}
 
 }

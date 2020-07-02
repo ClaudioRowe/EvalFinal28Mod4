@@ -46,6 +46,21 @@ $(document).ready(function() {
                 columnGrids.forEach(function(muuri) {
                     muuri.refreshItems();
                 });
+
+                let id = item.getElement().dataset.id;
+                let estado = item.getElement().parentElement.dataset.estado;
+
+                let data = {
+                    id: id,
+                    estado: estado
+                }
+
+                $.ajax({
+                    url: 'moveractividad',
+                    type: 'POST',
+                    data: data,
+                    dataType: 'html'
+                });
             })
             .on('layoutStart', function() {
                 boardGrid.refreshItems().layout();
@@ -117,10 +132,27 @@ $(document).ready(function() {
                         newItem = newItem.firstChild;
                         columnGrids[0].add(newItem);
                         $('.board-item').click(function() {
-                            let id = $(this).attr('data-id');
-                            $('#id-edit').val(id);
-                            $('.task-details').slideDown('fast');
-                        });
+                                let id = $(this).attr('data-id');
+                                $('#id-edit').val(id);
+                                $('.task-details').slideDown('fast');
+                            })
+                            .on('dragEnd', function() {
+                                let id = $(this).attr('data-id');
+                                let estado = $(this).parent().attr('data-estado');
+
+                                let data = {
+                                    id: id,
+                                    estado: estado
+                                }
+
+                                $.ajax({
+                                    url: 'moveractividad',
+                                    type: 'POST',
+                                    data: data,
+                                    dataType: 'html'
+                                });
+
+                            });
                         columnGrids.forEach(function(muuri) {
                             muuri.refreshItems();
                         });
@@ -179,4 +211,38 @@ $(document).ready(function() {
         }
 
     });
+
+    // Otorga funcionalidad al botón de eliminar una actividad
+    $('#remove-act').click(function() {
+        let id = $('#id-edit').val();
+
+        if (id) {
+
+            let data = {
+                id: id,
+            }
+
+            $.ajax({
+                url: 'eliminaractividad',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+
+                    if (response === 'ok') {
+                        $('[data-id=' + id + ']').remove();
+                        boardGrid.refreshItems().layout();
+                        columnGrids.forEach(function(column) {
+                            column.refreshItems().layout();
+                        });
+                    }
+
+                    $('.task-details').slideUp('fast');
+
+                },
+                dataType: 'html'
+            });
+        }
+
+    });
+
 });
