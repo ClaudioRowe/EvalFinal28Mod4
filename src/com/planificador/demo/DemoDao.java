@@ -9,7 +9,9 @@ public class DemoDao {
 		
 		UsuarioDAO userdao = new UsuarioDAO();
 		Usuario u = new Usuario(1, "holamundo", "Hola", "Mundo", "hm@hm.com", "91111111", "hola12345", "BOL", "UTC-04:00");
+		
 		boolean status = userdao.modificarUsuario(u);
+		
 		Usuario user = userdao.obtenerUsuario(1);
 		System.out.println(user.getId());
 		System.out.println(user.getUsername());
