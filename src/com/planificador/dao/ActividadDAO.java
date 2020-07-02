@@ -357,6 +357,39 @@ public class ActividadDAO implements IActividadCRUD {
 		return false;
 		
 	}
+
+	@Override
+	public int obtenerUltimoId() {
+		String sql = "SELECT MAX(cod_act) FROM actividad";
+		Connection con = null;
+		PreparedStatement ps;
+		ResultSet rs;
+		int id = 0;
+
+		try {
+
+			con = ConexionBD.conectar();
+			ps = con.prepareStatement(sql);
+
+			rs = ps.executeQuery();
+
+			if (rs.next()) {
+
+				id = rs.getInt(1);
+				
+			}
+
+			rs.close();
+			ps.close();
+
+		} catch (Exception e) {
+
+			System.out.println(e);
+
+		}
+
+		return id;
+	}
 	
 	
 

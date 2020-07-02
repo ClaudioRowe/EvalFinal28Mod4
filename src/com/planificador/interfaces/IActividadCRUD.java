@@ -29,5 +29,8 @@ public interface IActividadCRUD {
 	
 	// Cambia el estado de una actividad a "Eliminado"
 	public boolean deshabilitarActividad(int id_actividad);
+
+	// Obtiene el id de la última actividad ingresada
+	public int obtenerUltimoId();
 	
 }

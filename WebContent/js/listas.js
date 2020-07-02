@@ -108,24 +108,26 @@ $(document).ready(function() {
                 url: 'agregaractividad',
                 type: 'POST',
                 data: data,
-                complete: function(data, status, xhr) {
-                    console.log(data);
-                    console.log(status);
-                    if (status === 'success') {
+                success: function(response) {
+
+                    if (response !== 'error') {
                         let newItem = document.createElement('div');
-                        let content = '<div class="board-item"><div class="board-item-content">' + descripcion + '</div></div>';
+                        let content = '<div class="board-item" data-id="' + response + '"><div class="board-item-content">' + descripcion + '<p>' + detalles + '</p></div></div>';
                         newItem.innerHTML = content;
                         newItem = newItem.firstChild;
                         columnGrids[0].add(newItem);
                         $('.board-item').click(function() {
+                            let id = $(this).attr('data-id');
+                            $('#id-edit').val(id);
                             $('.task-details').slideDown('fast');
                         });
                         columnGrids.forEach(function(muuri) {
                             muuri.refreshItems();
                         });
                         $('#add').val('');
-                        $('.add-task-form').slideUp('fast');
+
                     }
+                    $('.add-task-form').slideUp('fast');
                 },
                 dataType: 'html'
             });
@@ -138,8 +140,43 @@ $(document).ready(function() {
         $('.task-details').slideDown('fast');
     });
 
-    // Otorga funcionalidad al botón de aceptar, del panel de detalles de actividad
+    // Otorga funcionalidad al botón de editar detalles de actividad
     $('#add-details').click(function() {
-        $('.task-details').slideUp('fast');
+        let id = $('#id-edit').val(),
+            descripcion = $('#desc-edit').val(),
+            detalles = $('#detalles-edit').val(),
+            fecha = $('#fecha-edit').val(),
+            categoria = $('#categoria-edit').val();
+
+        if (descripcion && detalles && fecha && categoria) {
+
+            let fechaLong = new Date(fecha);
+            fechaLong = fechaLong.getTime();
+
+            let data = {
+                id: id,
+                descripcion: descripcion,
+                detalles: detalles,
+                fecha: fechaLong,
+                categoria: categoria
+            }
+
+            $.ajax({
+                url: 'editaractividad',
+                type: 'POST',
+                data: data,
+                success: function(response) {
+
+                    if (response === 'ok') {
+                        $('[data-id=' + id + ']').html('<div class="board-item-content">' + descripcion + '<p>' + detalles + '</p></div>');
+                    }
+
+                    $('.task-details').slideUp('fast');
+
+                },
+                dataType: 'html'
+            });
+        }
+
     });
 });
