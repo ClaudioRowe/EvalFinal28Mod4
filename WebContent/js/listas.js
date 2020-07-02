@@ -50,6 +50,8 @@ $(document).ready(function() {
                 let id = item.getElement().dataset.id;
                 let estado = item.getElement().parentElement.dataset.estado;
 
+                item.getElement().dataset.estado = estado;
+
                 let data = {
                     id: id,
                     estado: estado
@@ -98,7 +100,7 @@ $(document).ready(function() {
         $('.add-task-form').slideToggle('fast');
     });
 
-    // Otorga funcionalidad al botón de agregar
+    // Otorga funcionalidad al botón de agregar actividad
     $('.add-task-form>button').click(function() {
 
         let descripcion = $('#desc-add').val(),
@@ -127,13 +129,15 @@ $(document).ready(function() {
 
                     if (response !== 'error') {
                         let newItem = document.createElement('div');
-                        let content = '<div class="board-item" data-id="' + response + '"><div class="board-item-content">' + descripcion + '<p>' + detalles + '</p></div></div>';
+                        let content = '<div class="board-item" data-id="' + response + '" data-estado="por hacer"><div class="board-item-content">' + descripcion + '<p>' + detalles + '</p></div></div>';
                         newItem.innerHTML = content;
                         newItem = newItem.firstChild;
                         columnGrids[0].add(newItem);
                         $('.board-item').click(function() {
                                 let id = $(this).attr('data-id');
+                                let estado = $(this).attr('data-estado');
                                 $('#id-edit').val(id);
+                                $('#estado-edit').val(estado);
                                 $('.task-details').slideDown('fast');
                             })
                             .on('dragEnd', function() {
@@ -178,7 +182,8 @@ $(document).ready(function() {
             descripcion = $('#desc-edit').val(),
             detalles = $('#detalles-edit').val(),
             fecha = $('#fecha-edit').val(),
-            categoria = $('#categoria-edit').val();
+            categoria = $('#categoria-edit').val(),
+            estado = $('#estado-edit').val();
 
         if (descripcion && detalles && fecha && categoria) {
 
@@ -190,7 +195,8 @@ $(document).ready(function() {
                 descripcion: descripcion,
                 detalles: detalles,
                 fecha: fechaLong,
-                categoria: categoria
+                categoria: categoria,
+                estado: estado
             }
 
             $.ajax({
