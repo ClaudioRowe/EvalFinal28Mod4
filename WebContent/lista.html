@@ -72,18 +72,18 @@
                     <div class="add-task">
                         <button class="btn btn-primary">Nueva actividad</button>
                         <div class="add-task-form">
-                            <input type="text" placeholder="Escribe algo" id="desc-add" name="desc-add" maxlength="40">
-                            <div><label for="details">Detalles: </label><input type="text" id="detalles-add" name="detalles-add" placeholder="Escribe algo"></div>
+                            <div><label for="details">Descripción: </label><input type="text" placeholder="Escribe algo" id="desc-add" name="desc-add" maxlength="20"></div>
+                            <div><label for="details">Detalles: </label><input type="text" id="detalles-add" name="detalles-add" placeholder="Escribe algo" maxlength="50"></div>
                             <div><label for="start-date">Fecha: </label><input type="date" id="fecha-add" name="fecha-add"></div>
-                            <div><label for="category">Categoría: </label><input type="text" id="categoria-add" name="categoria-add"></div>
+                            <div><label for="category">Categoría: </label><input type="text" id="categoria-add" name="categoria-add" maxlength="20"></div>
                             <button class="btn btn-secondary">Agregar</button>
                         </div>
                     </div>
                     <div class="board-container">
                         <div class="board">
                             <div class="board-column todo">
-                                <div class="board-column-header">Por hacer hoy</div>
-                                <div class="board-column-content">
+                                <div class="board-column-header">Por hacer</div>
+                                <div class="board-column-content" data-estado="por hacer">
                                     <div class="board-item">
                                         <div class="board-item-content">Hacer ejercicio
                                             <p>Trote matutino</p>
@@ -103,7 +103,7 @@
                             </div>
                             <div class="board-column working">
                                 <div class="board-column-header">Pendiente</div>
-                                <div class="board-column-content">
+                                <div class="board-column-content" data-estado="pendiente">
                                     <div class="board-item">
                                         <div class="board-item-content">Sacar la basura
                                             <p>Importante</p>
@@ -118,7 +118,7 @@
                             </div>
                             <div class="board-column done">
                                 <div class="board-column-header">Completado</div>
-                                <div class="board-column-content">
+                                <div class="board-column-content" data-estado="completado">
                                     <div class="board-item">
                                         <div class="board-item-content">Remodelar el jardín
                                             <p>Antes del otoño</p>
@@ -139,11 +139,13 @@
                         </div>
                     </div>
                     <div class="task-details">
-                        <div><label for="details">Detalles: </label><input type="text" placeholder="Escribe algo"></div>
-                        <div><label for="start-date">Fecha de inicio: </label><input type="date" name="start-date" id="start-date"></div>
-                        <div><label for="end-date">Fecha de término: </label><input type="date" name="end-date" id="end-date"></div>
-                        <div><label for="category">Categoría: </label><input type="text"></div>
-                        <div><button id="add-details" class="btn btn-secondary">Aceptar</button></div>
+                        <input type="hidden" id="id-edit" name="id-edit" value="1">
+                        <div><label for="details">Descripción: </label><input type="text" placeholder="Escribe algo" id="desc-edit" name="desc-edit" maxlength="20"></div>
+                        <div><label for="details">Detalles: </label><input type="text" id="detalles-edit" name="detalles-edit" placeholder="Escribe algo" maxlength="50"></div>
+                        <div><label for="start-date">Fecha: </label><input type="date" id="fecha-edit" name="fecha-edit"></div>
+                        <div><label for="category">Categoría: </label><input type="text" id="categoria-edit" name="categoria-edit" maxlength="20"></div>
+                        <div><button id="add-details" class="btn btn-secondary">Editar</button></div>
+                        <div><button id="remove-act" class="btn btn-danger">Eliminar</button></div>
                     </div>
                 </section>
                 <section>

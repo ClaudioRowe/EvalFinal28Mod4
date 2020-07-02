@@ -9,6 +9,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.planificador.dao.UsuarioDAO;
 
@@ -44,6 +45,11 @@ public class LoginServlet extends HttpServlet {
 	        
         if (isValido) {
         	
+        	HttpSession session = request.getSession();
+        	
+        	int id = userdao.obtenerIdUsuario(usuario, password);
+        	session.setAttribute("id_usuario", id);
+        	
         	Cookie ck = new Cookie("usuario", usuario);
         	ck.setMaxAge(180);
         	response.addCookie(ck);
@@ -52,7 +58,7 @@ public class LoginServlet extends HttpServlet {
         } else {
         	
         	out.print("Usuario o contraseña incorrectos");
-        	request.getRequestDispatcher("index.jsp").include(request, response);
+        	request.getRequestDispatcher("index.jsp").forward(request, response);
         	
         }
 	        

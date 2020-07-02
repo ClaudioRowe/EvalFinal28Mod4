@@ -1,9 +1,6 @@
 package com.planificador.controlador;
 
 import java.io.IOException;
-import java.util.Enumeration;
-import java.util.Map;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,16 +11,16 @@ import com.planificador.dao.ActividadDAO;
 import com.planificador.modelo.Actividad;
 
 /**
- * Servlet implementation class AgregarActividadServlet
+ * Servlet implementation class EditarActividadServlet
  */
-@WebServlet("/agregaractividad")
-public class AgregarActividadServlet extends HttpServlet {
+@WebServlet("/editaractividad")
+public class EditarActividadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AgregarActividadServlet() {
+    public EditarActividadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,41 +33,28 @@ public class AgregarActividadServlet extends HttpServlet {
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		
-		String id_usuario = request.getParameter("id_usuario");
-		
+		String idString = request.getParameter("id");
 		String descripcion = request.getParameter("descripcion");
 		String detalles = request.getParameter("detalles");
 		String fechaString = request.getParameter("fecha");
 		String categoria = request.getParameter("categoria");
+		int id = Integer.parseInt(idString);
 		long fecha = Long.parseLong(fechaString);
 		
-		Actividad actividad = new Actividad(descripcion, detalles, fecha, categoria, "POR HACER");
+		Actividad actividad = new Actividad(id, descripcion, detalles, fecha, categoria, "Por hacer");
 		
 		ActividadDAO actdao = new ActividadDAO();
-		boolean status = actdao.crearActividad(actividad, 1);
+		boolean status = actdao.modificarActividad(actividad);
 		
 		if (status) {
 			
-			response.setStatus(HttpServletResponse.SC_OK);
-			int id = actdao.obtenerUltimoId();
-			
-			if (id != 0) {
-				
-				response.getWriter().write("" + id);
-				
-			} else {
-				
-				response.getWriter().write("error");
-				
-			}
-			
+			response.getWriter().write("ok");
 			
 		} else {
 			
 			response.getWriter().write("error");
 			
 		}
-		
 	}
 
 }

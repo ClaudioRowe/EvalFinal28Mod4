@@ -8,7 +8,6 @@ import java.util.List;
 import com.planificador.conexion.ConexionBD;
 import com.planificador.interfaces.IActividadRutinaCRUD;
 import com.planificador.modelo.ActividadRutina;
-import com.planificador.modelo.Rutina;
 
 public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 
@@ -17,7 +16,7 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 		int status = 0;
 		Connection con = null;
 		PreparedStatement ps;
-		 
+
         try {
             con = ConexionBD.conectar();
             ps = con.prepareStatement("INSERT INTO rutina(desc_act_rutina=? ,detalle_act_rutina=?, cat_act_rutina=?)"
@@ -25,27 +24,27 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
             ps.setString(1,actRutina.getDescripcion());  
             ps.setString(2,actRutina.getDetalle());  
             ps.setString(3,actRutina.getCategoria());
-            
+
             for (int i=0; i<7; i++) {
-          
+
             }
-              
+
             status=ps.executeUpdate();
-              
+
             ps.close();
-            
+
             if (status == 1) {
-            
+
             return true;
-            	
+
             }
-            
+
         } catch (Exception ex){
-        	
+
         	ex.printStackTrace();
-        	
+
         }  
-          
+
         return false;
 	}
 
@@ -71,7 +70,6 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 				actRutina.setDescripcion(rs.getString("desc_act_rutina"));
 				actRutina.setDetalle(rs.getString("detalle_act_rutina"));
 				actRutina.setCategoria(rs.getString("descripcion_rutina"));
-				
 			}
 
 			rs.close();
@@ -93,7 +91,7 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	@Override
 	public List<ActividadRutina> obtenerListaActRutinaPorCategoria(int id_rutina) {
 		// TODO Auto-generated method stub
@@ -111,5 +109,5 @@ public class ActividadRutinaDAO implements IActividadRutinaCRUD{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 }
