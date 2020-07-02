@@ -38,10 +38,12 @@ public class EditarActividadServlet extends HttpServlet {
 		String detalles = request.getParameter("detalles");
 		String fechaString = request.getParameter("fecha");
 		String categoria = request.getParameter("categoria");
+		String estado = request.getParameter("estado");
 		int id = Integer.parseInt(idString);
 		long fecha = Long.parseLong(fechaString);
+		estado = estado.toUpperCase();
 		
-		Actividad actividad = new Actividad(id, descripcion, detalles, fecha, categoria, "Por hacer");
+		Actividad actividad = new Actividad(id, descripcion, detalles, fecha, categoria, estado);
 		
 		ActividadDAO actdao = new ActividadDAO();
 		boolean status = actdao.modificarActividad(actividad);
@@ -55,6 +57,7 @@ public class EditarActividadServlet extends HttpServlet {
 			response.getWriter().write("error");
 			
 		}
+		
 	}
 
 }
