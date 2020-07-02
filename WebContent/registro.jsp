@@ -24,13 +24,11 @@
     <script src="js/main.js"></script>
 
     <style>
-
     #formaReg {
       margin: auto;
       background-color: orange;
       border-radius: 5px
     }
-
     #titReg {
       text-align: center;
       padding-bottom: 5vh;
@@ -39,16 +37,13 @@
       border-radius: 5px;
       margin-bottom: 13vh;
     }
-
     #botonForma {
       margin: auto;
     }
-
     </style>
 
 </head>
 
-<html>
 
   <body>
 
@@ -56,7 +51,7 @@
 
   <div class="card justify-content-center">
 
-    <form method="post" action="" class="card-body" id="formaReg" >
+    <form method="post" action="registro" class="card-body" id="formaReg" >
 
     <label class="col-5">Nombre</label>
     <input type="text" placeholder="Nombre" name="nombre" ><br>
@@ -67,27 +62,34 @@
     <label class="col-5">Password</label>
     <input type="text" placeholder="Password" name="password"><br>
     <label class="col-5">E-mail</label>
-    <input type="e-mail" placeholder="E-mail" name="email"><br><br>
+    <input type="email" placeholder="E-mail" name="email"><br>
+     <label class="col-5">Teléfono</label>
+    <input type="text" placeholder="Telefono" name="telefono"><br><br>
 
     <label class="col-sm-5 col-3">País</label>
     <select name="pais">
-    <option>Chile</option>
-    <option>Argentina</option>
-    <option>Perú</option>
-    <option>Ecuador</option>
-    <option>Venezuela</option>
-    <option>Bolivia</option>
-    <option>Colombia</option>
-    <option>Uruguay</option>
+    <option value="CHL">Chile</option>
+    <option value="ARG">Argentina</option>
+    <option value="PER">Perú</option>
+    <option value="ECU">Ecuador</option>
+    <option value="VEN">Venezuela</option>
+    <option value="BOL">Bolivia</option>
+    <option value="COL">Colombia</option>
+    <option value="URY">Uruguay</option>
+    <option value="PRY">Paraguay</option>
     </select><br><br>
     <input type="submit" value="Enviar" id="botonForma">
     </form>
+    
+    <div>
+    	<% if (request.getAttribute("mensaje") != null) { %>
+    	<%= request.getAttribute("mensaje") %>
+    	<% } %>
+    </div>
+    <div><a href="index.html">Volver al iinicio</a></div>
 
   </div>
 
   </body>
 
 </html>
-
-
-

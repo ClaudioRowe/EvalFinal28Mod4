@@ -155,14 +155,16 @@
                         </div>
                     </div>
                     <div class="task-details">
+                    	<div><h4>Editar detalles</h4></div>
                         <input type="hidden" id="id-edit" name="id-edit" value="1">
                         <input type="hidden" id="estado-edit" name="id-edit" value="">
                         <div><label for="details">Descripción: </label><input type="text" placeholder="Escribe algo" id="desc-edit" name="desc-edit" maxlength="20"></div>
                         <div><label for="details">Detalles: </label><input type="text" id="detalles-edit" name="detalles-edit" placeholder="Escribe algo" maxlength="50"></div>
                         <div><label for="start-date">Fecha: </label><input type="date" id="fecha-edit" name="fecha-edit"></div>
                         <div><label for="category">Categoría: </label><input type="text" id="categoria-edit" name="categoria-edit" maxlength="20"></div>
-                        <div><button id="add-details" class="btn btn-secondary">Editar</button></div>
+                        <div><button id="add-details" class="btn btn-primary">Editar</button></div>
                         <div><button id="remove-act" class="btn btn-danger">Eliminar</button></div>
+                        <div><button id="edit-cancel" class="btn btn-secondary">Eliminar</button></div>
                     </div>
                 </section>
                 <section>
