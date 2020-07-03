@@ -128,16 +128,30 @@ $(document).ready(function() {
                 success: function(response) {
 
                     if (response !== 'error') {
+                        fechaString = new Date(fecha).toISOString().substring(0, 10);
+
                         let newItem = document.createElement('div');
-                        let content = '<div class="board-item" data-id="' + response + '" data-estado="por hacer"><div class="board-item-content">' + descripcion + '<p>' + detalles + '</p></div></div>';
+                        let content = '<div class="board-item" data-id="' + response + '" data-fecha="' + fechaString + '" data-categoria="' + categoria + '" data-estado="por hacer">' +
+                            '<div class="board-item-content"><span>' + descripcion + '</span><p>' + detalles + '</p></div></div>';
+
                         newItem.innerHTML = content;
                         newItem = newItem.firstChild;
                         columnGrids[0].add(newItem);
                         $('.board-item').click(function() {
-                                let id = $(this).attr('data-id');
-                                let estado = $(this).attr('data-estado');
+                                let id = $(this).attr('data-id'),
+                                    descripcion = $(this).find('span').first().html(),
+                                    detalles = $(this).find('p').first().html(),
+                                    fecha = $(this).attr('data-fecha'),
+                                    categoria = $(this).attr('data-categoria'),
+                                    estado = $(this).attr('data-estado');
+
                                 $('#id-edit').val(id);
+                                $('#desc-edit').val(descripcion);
+                                $('#detalles-edit').val(detalles);
+                                $('#fecha-edit').val(fecha);
+                                $('#categoria-edit').val(categoria);
                                 $('#estado-edit').val(estado);
+
                                 $('.task-details').slideDown('fast');
                             })
                             .on('dragEnd', function() {
@@ -163,6 +177,7 @@ $(document).ready(function() {
                         $('#add').val('');
 
                     }
+                    $('.add-task-form input').val('');
                     $('.add-task-form').slideUp('fast');
                 },
                 dataType: 'html'
@@ -173,10 +188,20 @@ $(document).ready(function() {
 
     // Otorga funcionalidad al hacer (doble) click y al recolocar las actividades del tablero
     $('.board-item').click(function() {
-            let id = $(this).attr('data-id');
-            let estado = $(this).attr('data-estado');
+            let id = $(this).attr('data-id'),
+                descripcion = $(this).find('span').first().html(),
+                detalles = $(this).find('p').first().html(),
+                fecha = $(this).attr('data-fecha'),
+                categoria = $(this).attr('data-categoria'),
+                estado = $(this).attr('data-estado');
+
             $('#id-edit').val(id);
+            $('#desc-edit').val(descripcion);
+            $('#detalles-edit').val(detalles);
+            $('#fecha-edit').val(fecha);
+            $('#categoria-edit').val(categoria);
             $('#estado-edit').val(estado);
+
             $('.task-details').slideDown('fast');
         })
         .on('dragEnd', function() {
@@ -270,6 +295,11 @@ $(document).ready(function() {
             });
         }
 
+    });
+
+    // Otorga funcionalidad al botón de cancelar edición de actividad
+    $('#edit-cancel').click(function() {
+        $('.task-details').slideUp('fast');
     });
 
 });

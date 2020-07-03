@@ -4,6 +4,7 @@
 <%@ page import="com.planificador.dao.ActividadDAO" %>
 <%@ page import="com.planificador.modelo.Actividad" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.Calendar" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="es">
@@ -99,11 +100,22 @@
                                 	ActividadDAO actdao = new ActividadDAO();
                                 	List<Actividad> porhacer = actdao.obtenerActividadesPorEstado(1,"POR HACER");
                                 	for (Actividad act: porhacer) {
+                                        long fecha = act.getFecha();
+                                        Calendar c = Calendar.getInstance();
+                                        c.setTimeInMillis(fecha);
+                                        int day = c.get(Calendar.DAY_OF_MONTH);
+                                        int month = c.get(Calendar.MONTH) + 1;
+                                        int year = c.get(Calendar.YEAR);
+                                        
+                                        String diaString = (day < 10) ? "0" + day : "" + day;
+                                        String mesString = (month < 10) ? "0" + month : "" + month;
+                                        
+                                        String fechaString = year + "-"+ mesString + "-" + diaString;
                                 %>
                                 
-                                    <div class="board-item" data-id="<%= act.getId() %>" data-estado="<%= act.getEstado() %>">
+                                    <div class="board-item" data-id="<%= act.getId() %>" data-fecha="<%= fechaString %>" data-categoria="<%= act.getCategoria() %>" data-estado="<%= act.getEstado() %>">
                                     	<div class="board-item-content">
-                                    		<%= act.getDescripcion() %>
+                                    		<span><%= act.getDescripcion() %></span>
                                     		<p><%= act.getDetalle() %></p>
                                    		</div>
                                 	</div>
@@ -119,11 +131,22 @@
                                 <% 
                                 	List<Actividad> pendiente = actdao.obtenerActividadesPorEstado(1,"PENDIENTE");
                                 	for (Actividad act: pendiente) {
+                                        long fecha = act.getFecha();
+                                        Calendar c = Calendar.getInstance();
+                                        c.setTimeInMillis(fecha);
+                                        int day = c.get(Calendar.DAY_OF_MONTH);
+                                        int month = c.get(Calendar.MONTH) + 1;
+                                        int year = c.get(Calendar.YEAR);
+                                        
+                                        String diaString = (day < 10) ? "0" + day : "" + day;
+                                        String mesString = (month < 10) ? "0" + month : "" + month;
+                                        
+                                        String fechaString = year + "-"+ mesString + "-" + diaString;
                                 %>
                                 
-                                    <div class="board-item" data-id="<%= act.getId() %>" data-estado="<%= act.getEstado() %>">
+                                    <div class="board-item" data-id="<%= act.getId() %>" data-fecha="<%= fechaString %>" data-categoria="<%= act.getCategoria() %>" data-estado="<%= act.getEstado() %>">
                                     	<div class="board-item-content">
-                                    		<%= act.getDescripcion() %>
+                                    		<span><%= act.getDescripcion() %></span>
                                     		<p><%= act.getDetalle() %></p>
                                    		</div>
                                 	</div>
@@ -139,11 +162,22 @@
                                 <% 
                                 	List<Actividad> completado = actdao.obtenerActividadesPorEstado(1,"COMPLETADO");
                                 	for (Actividad act: completado) {
+                                    long fecha = act.getFecha();
+                                        Calendar c = Calendar.getInstance();
+                                        c.setTimeInMillis(fecha);
+                                        int day = c.get(Calendar.DAY_OF_MONTH);
+                                        int month = c.get(Calendar.MONTH) + 1;
+                                        int year = c.get(Calendar.YEAR);
+                                        
+                                        String diaString = (day < 10) ? "0" + day : "" + day;
+                                        String mesString = (month < 10) ? "0" + month : "" + month;
+                                        
+                                        String fechaString = year + "-"+ mesString + "-" + diaString;
                                 %>
                                 
-                                    <div class="board-item" data-id="<%= act.getId() %>" data-estado="<%= act.getEstado() %>">
+                                    <div class="board-item" data-id="<%= act.getId() %>" data-fecha="<%= fechaString %>" data-categoria="<%= act.getCategoria() %>" data-estado="<%= act.getEstado() %>">
                                     	<div class="board-item-content">
-                                    		<%= act.getDescripcion() %>
+                                    		<span><%= act.getDescripcion() %></span>
                                     		<p><%= act.getDetalle() %></p>
                                    		</div>
                                 	</div>
@@ -155,16 +189,18 @@
                         </div>
                     </div>
                     <div class="task-details">
-                    	<div><h4>Editar detalles</h4></div>
+                    	<div><h4>Editar actividad</h4></div>
                         <input type="hidden" id="id-edit" name="id-edit" value="1">
                         <input type="hidden" id="estado-edit" name="id-edit" value="">
                         <div><label for="details">Descripción: </label><input type="text" placeholder="Escribe algo" id="desc-edit" name="desc-edit" maxlength="20"></div>
                         <div><label for="details">Detalles: </label><input type="text" id="detalles-edit" name="detalles-edit" placeholder="Escribe algo" maxlength="50"></div>
                         <div><label for="start-date">Fecha: </label><input type="date" id="fecha-edit" name="fecha-edit"></div>
                         <div><label for="category">Categoría: </label><input type="text" id="categoria-edit" name="categoria-edit" maxlength="20"></div>
-                        <div><button id="add-details" class="btn btn-primary">Editar</button></div>
-                        <div><button id="remove-act" class="btn btn-danger">Eliminar</button></div>
-                        <div><button id="edit-cancel" class="btn btn-secondary">Eliminar</button></div>
+                        <div>
+                            <button id="add-details" class="btn btn-primary">Editar</button>
+                            <button id="remove-act" class="btn btn-danger">Eliminar</button>
+                            <button id="edit-cancel" class="btn btn-secondary">Cancelar</button>
+                        </div>
                     </div>
                 </section>
                 <section>
