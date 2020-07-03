@@ -6,7 +6,7 @@ $(document).ready(function() {
     display.innerHTML = usuario;
 
     $('body').on("click mousedown mouseup focus blur keydown change dblclick mousemove mouseover mouseout mousewheel keydown keyup keypress textInput touchstart touchmove touchend touchcancel resize scroll zoom select change submit reset", function(e) {
-        setCookie("usuario", usuario, 3);
+        setCookie("usuario", usuario, 30);
     });
 
 });

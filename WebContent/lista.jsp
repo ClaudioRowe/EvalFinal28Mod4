@@ -30,7 +30,6 @@
     <!-- JS -->
     <script src="js/main.js"></script>
     <script src="js/listas.js"></script>
-    <script src="js/logincheck.js"></script>
     <script src="js/logout.js"></script>
 </head>
 

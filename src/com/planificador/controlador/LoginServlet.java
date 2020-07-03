@@ -51,13 +51,13 @@ public class LoginServlet extends HttpServlet {
         	session.setAttribute("id_usuario", id);
         	
         	Cookie ck = new Cookie("usuario", usuario);
-        	ck.setMaxAge(180);
+        	ck.setMaxAge(1800);
         	response.addCookie(ck);
         	response.sendRedirect("index.html");
         	
         } else {
         	
-        	out.print("Usuario o contraseña incorrectos");
+        	request.setAttribute("mensaje", "Usuario o contraseña incorrectos");
         	request.getRequestDispatcher("index.jsp").forward(request, response);
         	
         }
